@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPYY 1ST YEARR OF COURTING MY BONN MY BABY</title>
+<style>
+/* ===== GENERAL RESET ===== */
+html, body {
+  margin:0; padding:0; height:100%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background:#ffe6f2;
+  -webkit-text-size-adjust:100%; /* prevent mobile zoom */
+  overflow:hidden;
+}
+
+/* ===== SCREENS ===== */
+.screen {
+  width:100vw;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  backface-visibility:hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  position:absolute;
+  top:0; left:0;
+}
+
+.flip-out { transform: rotateY(90deg); opacity:0; z-index:0;}
+.flip-in { transform: rotateY(0deg); opacity:1; z-index:1;}
+
+/* ===== INTRO SCREEN ===== */
+#intro {
+  position:relative;
+  background-image: url('https://i.pinimg.com/736x/09/75/9b/09759b255e9750a1e34a84f1796629ed.jpg');
+  background-size: cover;
+  background-position: center;
+  color:#ff1a75;
+  z-index:2;
+}
+#intro img { width:300px; max-width:80vw; max-height:50vh; }
+#intro h1 { font-size:clamp(1.5rem, 4vw, 2.8rem); margin:20px 0; text-shadow:1px 1px 5px #fff;}
+#intro button { padding:15px 40px; font-size:1.2em; border:none; border-radius:20px; background:#ff66b2; color:white; cursor:pointer;}
+
+/* ===== CONFETTI ===== */
+.confetti {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: confettiFall linear infinite;
+}
+@keyframes confettiFall {
+  to { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* ===== LETTER SCREEN ===== */
+#letterScreen {
+  background-image: url('https://i.pinimg.com/1200x/7e/08/9a/7e089ac5bbb5231398b3dfa522c9aea9.jpg');
+  background-size: cover;
+  background-position: center;
+  color:#4a2c5a;
+}
+.letter-box {
+  background: rgba(255,240,250,0.85);
+  border-radius:20px;
+  padding:30px;
+  max-width:600px;
+  box-shadow:0 0 25px rgba(255,105,180,0.5);
+}
+.letter-box h2 { font-size:clamp(1.5rem, 5vw, 2.5rem); color:#ff4da6; margin-bottom:15px;}
+.letter-box p { font-size:clamp(0.9rem,3.5vw,1.3rem); line-height:1.6; margin-bottom:10px; }
+.characters { margin-top:20px; display:flex; justify-content:space-around;}
+.characters img { width:80px; animation:bounce 2s infinite ease-in-out;}
+@keyframes bounce {0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+.heart { font-size:2.5em; margin-top:20px; color:#e60073; animation:beat 1.2s infinite;}
+@keyframes beat {0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+#memoriesBtn { margin-top:20px; padding:10px 25px; border:none; border-radius:15px; background:#ff66b2; color:white; cursor:pointer;}
+
+/* ===== MEMORIES SCREEN ===== */
+#memoriesScreen {
+  background-image: url('https://i.pinimg.com/1200x/08/10/5e/08105e3f52bd60995bc93848c7b68704.jpg');
+  background-size: cover;
+  background-position: center;
+  padding:20px;
+  overflow:hidden;
+}
+.memories-container { overflow:hidden; width:100%; max-width:650px; margin:0 auto;}
+.memories-grid-wrapper {
+  display:flex;
+  width:200%;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+.memories-grid {
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:10px;
+  justify-items:center;
+  flex:0 0 50%;
+}
+.memories-grid img {
+  width:100px;
+  height:100px;
+  object-fit:cover;
+  border:4px solid #ffb3d9;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(255,105,180,0.5);
+}
+.option-btn {
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:15px;
+  background:#ff66b2;
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== MUSIC SCREEN ===== */
+
+.music-text {
+  flex:1;                 /* fills remaining vertical space */
+  overflow-y:auto;         /* enables scrolling */
+  margin-top:15px;
+  text-align: justify;
+  line-height:1.6;
+  font-size:clamp(0.95rem,3.5vw,1.2rem);
+  padding-right:10px;
+  max-height:60vh;         /* adjusts height for mobile screens */
+}
+.music-text::-webkit-scrollbar {
+  width:6px;
+}
+.music-text::-webkit-scrollbar-thumb {
+  background:#ff9acb;
+  border-radius:10px;
+}
+
+#musicScreen {
+  background-image: url('https://i.pinimg.com/736x/8f/16/16/8f161671d1507f5b79443fabb1fd0d9b.jpg');
+  background-size: cover;
+  background-position: center;
+  padding:20px;
+  overflow:auto;
+}
+#musicScreen iframe, #musicScreen img { 
+  width:80%; max-width:560px; border-radius:15px; box-shadow:0 0 25px rgba(255,105,180,0.5);
+}
+#nextBtn { margin-top:20px; padding:12px 25px; border:none; border-radius:15px; background:#ff66b2; color:white; cursor:pointer;}
+
+/* ===== CARD PROMPT ===== */
+#cardPrompt {
+  background-image: url('https://i.pinimg.com/736x/27/79/c2/2779c2ad6d6ea1c59014683f097fea82.jpg');
+  background-size: cover;
+  background-position: center;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+#cardPrompt img { width:200px; border-radius:15px; margin-bottom:20px;}
+
+/* ===== CARD SCREEN ===== */
+#cardScreen {
+  background-image: url('21111.jpg');
+  background-size: cover;
+  background-position: center;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.paper-card {
+  background: rgba(255,240,245,0.9);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(255,105,180,0.5);
+
+  width:92%;
+  max-width:650px;
+  max-height:85vh;
+
+  display:flex;
+  flex-direction:column;
+}
+.paper-card h2 {
+  font-size:clamp(1.4rem,4vw,2rem);
+  margin-bottom:10px;
+}
+.card-text {
+  flex:1;
+  overflow-y:auto;
+
+  text-align: justify;
+  line-height:1.8;
+  font-size:clamp(0.95rem,3.5vw,1.15rem);
+  letter-spacing:0.3px;
+  padding-right:10px;
+}
+.card-text::-webkit-scrollbar {
+  width:6px;
+}
+.card-text::-webkit-scrollbar-thumb {
+  background:#ff9acb;
+  border-radius:10px;
+}
+
+/* ===== SCROLL BUTTON INSIDE CARD ===== */
+#scrollDown {
+  margin-top:10px;
+  padding:8px 15px;
+  border:none;
+  border-radius:10px;
+  background:#ff66b2;
+  color:white;
+  cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="screen">
+  <img src="MEEE.png" alt="Sanrio Love">
+  <h1>🎉HAPPYYY HAPPYYYY 1 YEARR OF COURTINGSIES MY BON MY BABY MY LOVE!!💙💙🩷🩷🎉</h1>
+  <button id="openBtn">AWAAA INTRODUCTIONN MY BABYY💌</button>
+</div>
+
+<!-- LETTER -->
+<div id="letterScreen" class="screen" style="opacity:0; z-index:0;">
+  <div class="letter-box">
+    <h2>✨ MY BONN MY BABYY🩷🩷✨</h2>
+    <p>I ALWAYSS LOVE NA MANY LOVE NA GRABINGSIES LOVE YOU SO SOOO MUCHIES WUCHIES OF THE MOSTEST MY BONN MY BABY!!!!!! EHAEHAAHAAHAH </p>
+    <p>HAPPYYY 1 YEARR OF COURTINGSIES MY BABYY😭😭😭HUUHHGHUHU I HOPEYY DOOPIES YOU LOVE IT MY BABYY I KNOWSIES IT ISNT MUCHIESS AND I KNOWSIES NA RUSH SHAA PEROO I WANT TO MAKEE THIS MOMENTT JUD MY BABYY EVENN A MEMORABLE MOMENT ANI
+    <div class="characters">
+      <img src="heal.png" alt="Hello Kitty">
+      <img src="cats.png" alt="Pochacco">
+    </div>
+    <button id="memoriesBtn">ATONGG MGA PICTURES THROUGHOUTT THE YEARSS MY BABYY 💙💙💙📸</button>
+  </div>
+</div>
+
+<!-- MEMORIES -->
+<div id="memoriesScreen" class="screen" style="opacity:0; z-index:0;">
+  <h2>HOYY AWAAA MEMORIES NATOO MY BABY!!!</h2>
+  <div class="memories-container">
+    <div class="memories-grid-wrapper">
+      <div class="memories-grid">
+        <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg"><img src="5.jpg"><img src="6.jpg">
+        <img src="7.jpg"><img src="8.jpg"><img src="9.jpg"><img src="10.jpg"><img src="11.jpg"><img src="12.jpg">
+      </div>
+      <div class="memories-grid">
+        <img src="13.jpg"><img src="14.jpg"><img src="15.jpg"><img src="16.jpg"><img src="17.jpg"><img src="18.jpg">
+        <img src="19.jpg"><img src="20.jpg"><img src="21.jpg"><img src="22.jpg"><img src="23.jpg"><img src="24.jpg">
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:20px; display:flex; justify-content:center; gap:15px;">
+    <button class="option-btn" id="memoriesSlideBtn">MORESIESSS!!</button>
+    <button class="option-btn" id="memoriesNextBtn">NEXTSIESSS!!!!!</button>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<div id="musicScreen" class="screen" style="opacity:0; z-index:0; display:flex; flex-direction:column; padding:20px;">
+  <h2 style="text-align:center; margin-bottom:15px;">ATONGG KANTAA MY LOVE AS ALWAYSS!! 🎤🎤🎤</h2>
+
+  <a href="https://www.youtube.com/watch?v=L215z9C4Zd8" target="_blank" style="align-self:center; margin-bottom:15px;">
+    <img src="https://img.youtube.com/vi/L215z9C4Zd8/0.jpg" 
+         alt="Dilaw by Maki" 
+         style="width:100%; max-width:350px; border-radius:15px; box-shadow:0 0 20px rgba(255,105,180,0.5);">
+  </a>
+
+  <!-- Scrollable Text Container -->
+  <div class="music-text" style="
+       flex:1; 
+       overflow-y:auto; 
+       text-align:justify; 
+       font-size:clamp(0.95rem,3.5vw,1.2rem); 
+       line-height:1.6; 
+       padding-right:10px;
+       margin-bottom:15px;
+  ">
+    <p>I LOVEE THISS SONG OF US KAYY IT ALWAYS REMINDS US OF THE MOMENTS NA EXPERIENCE NATO MY BABYY SINCEE</p>
+    <p>SUGOD LIKE NOSTALGIA VIBEE AND MO RUNN THROUGH JUD TALAGAA OF WHAT WE DO TOGETHERSIES MY BONN REMENISCING DIBAA DIBAA</P>
+     	ANDD I LOVEE HOWW SUGOD PALANGG WAPAGAI KO KABAW LIKEE MGA OPM YOU INTRODUCE ME TO SO MUCHIESS</p>
+    <p>BECAUSE OF YOU MY LOVEE AND I LOVE YOU SOO SOO MUCHIES FOR ITT FOR EVEYRTHING MY BABYY AS INN HUGUHGUUHG </P>
+	<P>KAY LIKEE THE FACT NA IKAWW BAG O PAKA NAMINAW NI KUYA MAKI YET NA KIT AN NIMO ANG DILAW</p>
+    <p>WHILEE AKOO KAYY I FOUNDD THE SONGG LIKE ARHG AWLEJAHLFHAWFA CUTE KAAYO AND HAPPY VIBEE </P> 
+	<P>PERO ONCE NAKABAW TA NA PAREHAS TAG MUSIC NA DILAW TAS TOP PAJUDS PLAYLIST GURRL </P> 
+	<P>THAT LITERALLY CHANGE SO MUCHIES OF OUR EYES AND LOVEE AND SO HERE WE A</p>
+    <p>REE LIVING ON TOGETHER WITH DILAW AS OUR MUSIC THEME ALWAYS AND FOREVER ABOT JUD </P> <P>
+	NAS WEDDING MY BONN MY BABYY AND I LOVE NAA MAO JUD NANG INTERNATIONAL AND MAINN SONG NATO</p>
+    <p>ANDD LETS ALWAYSS ALWAYS SOS EVENN MGA RANDOM DAYSS MA ABOT JUD NANG DILAW SOSS KATONG OPENING SA SCHOOL MY BABYY </P>
+	<P>ESPECIALLY SA MGA CONCERTT ORR RANDOM PLACES MA ABOT JUD NANG DILAW KUNG ASA TA AND LETS ALWAYS </P>
+	KEEP DILAW AS OUR ONE AND ONLY SONGG OF US MY BONN MY BABYY</p>
+  </div>
+
+  <button id="nextBtn" style="align-self:center; padding:12px 25px; border:none; border-radius:15px; background:#ff66b2; color:white; cursor:pointer;">
+    NEXTSIESS PAA!! ➡️
+  </button>
+</div>
+
+
+
+<!-- CARD PROMPT -->
+<div id="cardPrompt" class="screen" style="opacity:0; z-index:0;">
+  <img src="21111.png" alt="Card">
+  <h2>I HAVE A CARD FOR YOUU WANNA SEE?</h2>
+  <button class="option-btn" id="yesCard">YESS PLEASEE MY MIN HEWHEHEHEW</button>
+  <button class="option-btn" id="noCard">NO AYOKOO NUGO KA?</button>
+</div>
+
+<!-- CARD SCREEN -->
+<div id="cardScreen" class="screen" style="opacity:0; z-index:0;">
+  <div class="paper-card">
+    <h2>💌MIN'S CARDD FOR MY BONN WHEHEHHEWE💌</h2>
+    <div class="card-text">
+      DEAR MYY BONNN MY BABY,<BR><BR>
+‎I LOVEE EVERY MOMENTSS WE EXPERIENCE THROUGHOUT THIS WHOLE YEARR AND MORE JUD SA PUHONN MY BONN MY BABYTY JEJEEJJSJSJAJA WE GAINED SO MUCHIES AND MAKITA JUD ANG DIFFERENCEE SA FIRST SND NOWW SOS MY BONN EHEHHSHHSS GAINING NICKNAMESS WAYS TO HAVE FUN WITH ONE ANOTHER OF LOVING ONE ANOTHERRR BEING WITH ONE WNOTHERR MOVING UP OT LEVELS OF GOING HOMEISES TOGETHERSIESS CELEBRATINGG ONE TIME EVENTSS OF EVERY YEARR MAKING THE BEST OF THE BEST EACH DAYY OF US TOGETHERSIES MY BONNN IN SCHOOL AND IN HOMEE WE STARTED TO EVEN DC DC GALII MY BONNN FROMM CHATS TO DC AWAA GUD RIGHT NOWW EHHEEHSSHSJS ANDD NAKA DATE OG PHOTOBOOTH JUD TA MT LOVEE AND I LOVE IT SO MUCHIESS MY BONN MY BABYY HEEHEHEHSHJSDJNS AS INNN THROUGHOUT SO MUCHIES MYY BONNNN ESPECIALLY THO NAA TAY TIMESSIES MAKA MISUNDERSTANDING OR FIGHTS MY BABYY WE ALWYSS IN THE END LOVE ONE ANOTHER MY BONNN TO PROGRESS TO IMPROVE AND CHANGE FOR EACHOTHWRISES AND I ALWAYS LOVEE THAT THROUGHOUT OUR DAYY MY BONNN AS EVERYDAYY WITH YOU IS WORTH SO EVERYTHING IN MY LIFEE MY BONNN WORTH KEEPING WORTH LOVING WORTH WAITINGIES AS I KNOWSIES YOU AND I WONT EVER GET TIREDSIES OF ONEE ANOTHER SOSS AND THATS A FACT ALWAYS AND FOREVERR MY BONN MY BABY KAY EVEN SOO MA ABOT TAG FIGHTS THROUGHOUT WE'LL ALWAYS BE WITH EACHOTHERSIES THROUGH THICK OR THINN BALA IF NAA TAY MGA FLAWS WE'LL SLOWLY LEARN ONE ANOTHERR UNDERSTANDIES ANDD IMPROVEE FOR EACHOTHERSIES LEARNING EACHOTHERSIES HOW WE WANT TO BE LOVE EJEEEJHDJSNJSJS ANDD MANYY MORESIES MY BONN MY BABYY AND I VERRYY PROUDSIES JUD ALWAYS FOR THE ACHEIEVEMNTS AND MILESTONES NA REACH NATOO WITHIN THIS YEAR AND MORE SA PUGONN MY LOVEE WE EVEN PLAN SA FUTURE WITH EACHOTHERSIES PERO PUHONN MY BABYYY HEHHEHESHSJSJ AS WELLSIES OUR TIKTOKIESS OUR GIFTSS OURR RELATIONSHIP BOND ANDD MANY MOREE MY BON MY BABYY I LOVEE HOW WE'LL ALWAYSS GROW TOGETHER AND DEVELOP AS GODD ALWAYS STAY WITH US GUIDINGG USS AND BEING WITH US THROUGH OUR EVERYDAY PRAYERS ESPECIALLY OUR BIBLE VERSES IN EVERY MORNING AND NIGHTSIESS CUTIEE KAAYOOO MY BABYY WHSHSNANAJAA I GLADSIESS NA ADD NA MY LOVEE AA INN KAA CUTIE😭😭TAS MYY BON OHH ILL ALWAYSS MISS NA MANY MISS NA GRABINGSIES MISS YOU SO SOO MUCHIES MY BONN MY BABYYY 🦕🦕🦕🦕🦕 VJJEHFBDBDNNDF ANDD MYY BONN MY BABYYY OUR FIRST TIMESS DAGHAN JUD KAYTA NAKA ABOTT ANAA EVEN FIRST TIME KA KARAOKE KO ESPECIALLY US BEING WITH ONE ANOTHER EVEN SINCE JHS TO SHS BY THISS MY BONN MY BABYY I ALWAYSS LOVEE NA MANYY LOVEE NA GRBAINGISESS LOVEE NAA ALWWYSS LOVEE NA IMMENSELY LOVE YOU SO SOO MUCHIES MY BONN MY BABYYY MY BELOVED SOON TO BE WIFEYY MY DEAR FUTURE GIRLFRIEE MY FIRST AND MY LASTY MY FIRST AND ONLY DILAWW MY FOREVER SND EVERR MOREESIESS. ANDD US REACHINGSIES HAPPY NEW YEARR OR CHRISTMASS OR ANYY EVENTS SA SCHOOLSIES AND MANY MOREE MY BABYYY YEHDHJSNANAMAA FO COURSIES SA PUHONJ MY LOVEE E LOOK FORWARD JUD NA NATOO TOGTHERSIES SNDD MYY BONN I MADE THIS WEBSITE AND THIS CARDD FOR US FOR OUR MEMORIES MY BABYY YEHEHHSHSJA I HOPESIES JUD YOU LOVEE IT MYY BONN KWOOO SOSS COURTINGSIES PERO PARAA JUD NI NIMOOO OG NATO MY BABYY AS ALWAYSS MY BONN MY BABYY MEA EMA MWAAA I ALWAYS MANYY GENUINELY LOVEE NAA AS IN LOVEE NA IMMENSELY LOVE YOU JUST AS MUCHIES WUCHIES MY BONN MY BABYYY WE'LL CONTINUEE TO GROWE AND DEVELOPP SND BE WITH EACHOTHERSIES EACH ANDD EVERYDAYY ALWAYSS JUD KEEP ON BEING OURSELVES ALWAYS JUD MO EXPRESS FREELY GET COMFYY FULL OF LOVE AND MOMENTSS TO CHERISHH AND REMEMBERR NEW HAPPENINGS AND EVENTS NA MA STAYY TA ALWAYS TOGETHERSIESS MANY IMPROVEMENTS AND PROGRESS OF OURSELVES IN OUR RELATIONSHIP AND IN WHAT WE DOO ACHIEVING OUR GOALS AND DREAMS TOGETHERSIES WITH OUR FULL SUPPORTT ANDD BEING ALWAYS BLESSED TO HAVE ONE ANOTHERRR MY BONN AS IM ALWAYSS GLADSIES NA NA MEET TA TUNGOD NI GOD NA BROUGHT US TO MANY MOMENTS WITH YOU AND ME MY BONN MY BABYY AND HEREE WE ARE MY LOVEE AS ALWAYS AND EVERY WAYSS WITH YOU MY BONN MY BABY</p>
+      <br><br>
+      (PUT FULL TEXT HERE, KEEP <br><br> FOR LINE BREAKS)
+    </div>
+    <button id="scrollDown">⬇️ SCROLL DOWN</button>
+  </div>
+</div>
+
+<script>
+// ===== CONFETTI =====
+function createConfetti() {
+  for (let i = 0; i < 50; i++) {
+    const conf = document.createElement('div');
+    conf.className = 'confetti';
+    conf.style.left = Math.random() * window.innerWidth + 'px';
+    conf.style.top = '-10px';
+    conf.style.backgroundColor = `hsl(${Math.random() * 360},100%,75%)`;
+    conf.style.width = (5 + Math.random() * 5) + 'px';
+    conf.style.height = conf.style.width;
+    conf.style.animationDuration = (2 + Math.random() * 3) + 's';
+    conf.style.zIndex = 1000;
+    document.body.appendChild(conf);
+  }
+}
+
+// ===== PAGE FLIP =====
+function flipPage(current,next){
+  next.style.zIndex=2;
+  next.style.display='flex';
+  current.classList.add('flip-out');
+  next.classList.add('flip-in');
+  setTimeout(()=>{
+    current.style.opacity=0;
+    next.style.opacity=1;
+    current.classList.remove('flip-out');
+    next.classList.remove('flip-in');
+  },800);
+}
+
+const intro=document.getElementById('intro');
+const letter=document.getElementById('letterScreen');
+const memories=document.getElementById('memoriesScreen');
+const music=document.getElementById('musicScreen');
+const cardPrompt=document.getElementById('cardPrompt');
+const cardScreen=document.getElementById('cardScreen');
+
+// Intro -> Letter
+document.getElementById('openBtn').addEventListener('click',()=>{
+  createConfetti();
+  setTimeout(()=>flipPage(intro,letter),1000);
+});
+
+// Letter -> Memories
+document.getElementById('memoriesBtn').addEventListener('click',()=>flipPage(letter,memories));
+
+// Memories Slide + Next
+document.addEventListener("DOMContentLoaded", () => {
+  const memoriesSlideBtn = document.getElementById('memoriesSlideBtn');
+  const memoriesNextBtn = document.getElementById('memoriesNextBtn');
+  const memoriesWrapper = document.querySelector('.memories-grid-wrapper');
+  let showingSecond = false;
+
+  memoriesSlideBtn.addEventListener('click', () => {
+    if(!showingSecond){
+      memoriesWrapper.style.transform = 'translateX(-50%)';
+      memoriesSlideBtn.innerText = 'BACK';
+      showingSecond = true;
+    } else {
+      memoriesWrapper.style.transform = 'translateX(0)';
+      memoriesSlideBtn.innerText = 'MORE';
+      showingSecond = false;
+    }
+  });
+
+  memoriesNextBtn.addEventListener('click', () => flipPage(memories,music));
+});
+
+// Music -> Card Prompt
+document.getElementById('nextBtn').addEventListener('click',()=>flipPage(music,cardPrompt));
+
+// Card YES/NO
+function showCard(){ flipPage(cardPrompt,cardScreen); }
+function tryAgain(){
+  cardPrompt.querySelector('h2').innerText="BALIKK BALIKSIES PLEASEE SIGEE NAA MY BABYYY";
+  cardPrompt.querySelector('img').src="21111.png";
+}
+document.getElementById('yesCard').addEventListener('click',showCard);
+document.getElementById('noCard').addEventListener('click',()=>{
+  tryAgain();
+  document.getElementById('yesCard').addEventListener('click',showCard,{once:true});
+});
+
+// CARD SCROLL BUTTON
+document.getElementById('scrollDown').addEventListener('click',()=>{
+  const cardText = document.querySelector('.card-text');
+  cardText.scrollBy({top:300, behavior:'smooth'});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.screen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  backface-visibility: hidden; /* hides the back side when flipped */
+  transform-style: preserve-3d; 
+  transition: transform 0.8s ease;
+}
+
+.flip-out {
+  transform: rotateY(90deg);  /* flips out to the side */
+  opacity: 0;
+}
+
+.flip-in {
+  transform: rotateY(0deg);   /* flips in from side */
+  opacity: 1;
+}
